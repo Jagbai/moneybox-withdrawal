@@ -15,5 +15,34 @@ namespace Moneybox.App
         public decimal Withdrawn { get; set; }
 
         public decimal PaidIn { get; set; }
+
+        public static bool ValidateLessThanLimit(decimal Pay)
+        {
+            if (Pay > PayInLimit)
+            {
+                return true;
+            }
+            return false;
+
+        }
+        public static bool ValidateLowFunds(decimal Balance)
+        {
+            if (Balance < 500m)
+            {
+                return true;
+            }
+            return false;
+
+        }
+        public static bool ValidateNoFunds(decimal Balance)
+        {
+            if (Balance <= 0)
+            {
+                return true;
+            }
+            return false;
+
+        }
+
     }
 }
