@@ -8,19 +8,15 @@ The solution contains a .NET core library (Moneybox.App) which is structured int
 
 ## The task
 
-The task is to implement a money withdrawal in the WithdrawMoney.Execute(...) method in the features folder. For consistency, the logic should be the same as the TransferMoney.Execute(...) method i.e. notifications for low funds and exceptions where the operation is not possible. 
+# Moneybox Money Withdrawal
 
-As part of this process however, you should look to refactor some of the code in the TransferMoney.Execute(...) method into the domain models, and make these models less susceptible to misuse. We're looking to make our domain models rich in behaviour and much more than just plain old objects, however we don't want any data persistance operations (i.e. data access repositories) to bleed into our domain. This should simplify the task of implementing WithdrawMoney.Execute(...).
+## Changes made
 
-## Guidelines
+## Withdraw Money
+Created execute method within Withdraw so that aftenew balance is calculated the balance is passed through 2 if statements that check whether the user has an insufficent amount of funds to make the Withdrawal and whether they have low funds. After which the function whill store the new balance within the from account as well as the amount withdrawn. The account repository is then updated.
 
-* You should spend no more than 1 hour on this task, although there is no time limit
-* You should fork or copy this repository into your own public repository (Github, BitBucket etc.) before you do your work
-* Your solution must compile and run first time
-* You should not alter the notification service or the the account repository interfaces
-* You may add unit/integration tests using a test framework (and/or mocking framework) of your choice
-* You may edit this README.md if you want to give more details around your work (e.g. why you have done something a particular way, or anything else you would look to do but didn't have time)
+## Transfer Money
+Made changes to the execute method to use the WithdrawMoney execute method as and made changes to the original code to make use of the new behavioural elements of the Account class.
 
-Once you have completed your work, send us a link to your public repository.
-
-Good luck!
+## Account
+Made changes to the Account class to become more rich in behaviour creating reusable methods that could be used within the classes Withdraw Money and Transfer Money allowing important values to not be exposed within the two classes
