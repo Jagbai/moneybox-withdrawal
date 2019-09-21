@@ -6,9 +6,7 @@ The solution contains a .NET core library (Moneybox.App) which is structured int
 * Features - this contains two operations, one which is implemented (transfer money) and another which isn't (withdraw money)
 * DataAccess - this contains a repository for retrieving and saving an account (and the nested user it belongs to)
 
-## The task
-
-# Moneybox Money Withdrawal
+## Moneybox Money Withdrawal
 
 ## Changes made
 
