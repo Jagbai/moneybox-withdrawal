@@ -22,12 +22,13 @@ namespace Moneybox.App.Features
             var to = this.accountRepository.GetAccountById(toAccountId);
 
             var paidIn = to.PaidIn + amount;
-            if (paidIn > Account.PayInLimit)
+            if (Account.ValidateLessThanLimit(paidIn))
             {
                 throw new InvalidOperationException("Account pay in limit reached");
             }
+            var Balance = Account.PayInLimit - paidIn;
 
-            if (Account.PayInLimit - paidIn < 500m)
+            if (Account.ValidateLowFunds(Balance))
             {
                 this.notificationService.NotifyApproachingPayInLimit(to.User.Email);
             }
