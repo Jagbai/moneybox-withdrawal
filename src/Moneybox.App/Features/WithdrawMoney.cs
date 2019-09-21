@@ -24,12 +24,12 @@ namespace Moneybox.App.Features
             //recalculate balance
             var fromBalance = from.Balance - amount;
             //Throw exceptions
-            if (fromBalance < 0m)
+            if (Account.ValidateNoFunds(fromBalance))
             {
                 throw new InvalidOperationException("Insufficient funds to make transfer");
             }
             //if there is low money in account then send email
-            if (fromBalance < 500m)
+            if (Account.ValidateLowFunds(fromBalance))
             {
                 this.notificationService.NotifyFundsLow(from.User.Email);
             }
